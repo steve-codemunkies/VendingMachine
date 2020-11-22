@@ -20,4 +20,12 @@ namespace VendingMachine.Tests.Mechanism
             result.Should().BeTrue();
         }
     }
+
+    public class CoinCollector : ICollectCoins
+    {
+        public bool Add(Coin coin)
+        {
+            return true;
+        }
+    }
 }
