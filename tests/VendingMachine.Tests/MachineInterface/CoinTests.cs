@@ -10,8 +10,8 @@ namespace VendingMachine.Tests.MachineInterface
         public void GivenThatThereAreTwoCoinsOfTheSameWeightAndDiameter_WhenICompareThem_ThenIGetTheExpectedResponse()
         {
             // Given
-            var subject1 = new Coin(5000, 835); // Nickel
-            var subject2 = new Coin(5000, 835); // Nickel
+            var subject1 = new Coin(5000, 21210); // Nickel
+            var subject2 = new Coin(5000, 21210); // Nickel
 
             // When
             // Then
@@ -23,8 +23,8 @@ namespace VendingMachine.Tests.MachineInterface
         public void GivenThatThereAreTwoCoinsOfTheSameWeightAndDifferentDiameters_WhenICompareThem_ThenIGetTheExpectedResponse()
         {
             // Given
-            var subject1 = new Coin(5000, 835); // Nickel
-            var subject2 = new Coin(5000, 836); // Not a Nickel
+            var subject1 = new Coin(5000, 21210); // Nickel
+            var subject2 = new Coin(5000, 22000); // Not a Nickel
 
             // When
             // Then
@@ -36,7 +36,7 @@ namespace VendingMachine.Tests.MachineInterface
         public void GivenThatIHaveACoin_WhenICompareItToANonCoin_ThenIGetTheExpectedResponse()
         {
             // Given
-            var subject = new Coin(5000, 835); // Still a Nickel
+            var subject = new Coin(5000, 21210); // Still a Nickel
 
             // When
             // Then

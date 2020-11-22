@@ -27,7 +27,7 @@ namespace VendingMachine.Tests.MachineInterface
         public void GivenACustomerInsertsACoin_WhenTheCoinIsValid_ThenTheCoinCollectorRetainsTheCoin()
         {
             // Given
-            var coin = new Coin(2268, 705); // Dime
+            var coin = new Coin(2268, 17910); // Dime
             var coinCollectorMock = new Mock<ICollectCoins>();
             var subject = new ControlPanel(coinCollectorMock.Object);
 
@@ -45,7 +45,7 @@ namespace VendingMachine.Tests.MachineInterface
         public void GivenACustomerInsertsACoin_WhenTheCoinIsInvalid_ThenTheCoinCollectorReturnsTheCoin()
         {
             // Given
-            var coin = new Coin(5670, 955);
+            var coin = new Coin(5670, 25260);
             var coinCollectorMock = new Mock<ICollectCoins>();
             var subject = new ControlPanel(coinCollectorMock.Object);
 

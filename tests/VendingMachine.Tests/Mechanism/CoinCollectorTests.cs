@@ -13,7 +13,7 @@ namespace VendingMachine.Tests.Mechanism
         public void GivenThatTheCoinIAmAddingIsValid_ThenItIsAccepted()
         {
             // Given
-            var coin = new Coin(2268, 705); // Dime
+            var coin = new Coin(2268, 17910); // Dime
             var validatorMock1 = new Mock<IValidateCoin>();
             var validatorMock2 = new Mock<IValidateCoin>();
             ICollectCoins subject = new CoinCollector(new [] { validatorMock1.Object, validatorMock2.Object });
@@ -32,7 +32,7 @@ namespace VendingMachine.Tests.Mechanism
         public void GivenThatTheCoinIAmAddingIsInvalid_ThenAnInvalidCoinExceptionIsThrown()
         {
             // Given
-            var coin = new Coin(2268, 705); // Dime
+            var coin = new Coin(2268, 17910); // Dime
             var validatorMock1 = new Mock<IValidateCoin>();
             var validatorMock2 = new Mock<IValidateCoin>();
             ICollectCoins subject = new CoinCollector(new [] { validatorMock1.Object, validatorMock2.Object });
