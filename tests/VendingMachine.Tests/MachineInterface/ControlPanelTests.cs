@@ -17,6 +17,19 @@ namespace VendingMachine.Tests.MachineInterface
             //Then
             result.Should().Be("INSERT COIN");
         }
+
+        [Fact]
+        public void GivenACustomerInsertsACoin_WhenTheCoinIsValid_ThenTheCoinCollectorRetainsTheCoin()
+        {
+            // Given
+            var subject = new ControlPanel();
+
+            // When
+            var result = subject.InsertCoin(new Coin());
+
+            // Then
+            result.Should().BeTrue();
+        }
     }
 
     public class ControlPanel
