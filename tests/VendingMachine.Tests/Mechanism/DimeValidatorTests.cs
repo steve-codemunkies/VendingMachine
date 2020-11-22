@@ -19,6 +19,19 @@ namespace VendingMachine.Tests.Mechanism
             // Then
             result.Should().BeTrue();
         }
+
+        [Fact]
+        public void GivenThatIAmNotValidatingADime_ThenTheValidatorReturnsFalse()
+        {
+            // Given
+            IValidateCoin subject = new DimeValidator();
+
+            // When
+            var result = subject.Validate(new Coin(5670, 24260));
+
+            // Then
+            result.Should().BeFalse();
+        }
     }
 
     public class DimeValidator : IValidateCoin
