@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using VendingMachine.Exceptions;
@@ -9,6 +10,7 @@ namespace VendingMachine.MachineInterface
     {
         private readonly ICollectCoins _coinCollector;
         private readonly List<Coin> _returnedCoins = new List<Coin>();
+        private bool _justVended = false;
 
         public ControlPanel(ICollectCoins coinCollector)
         {
@@ -19,6 +21,11 @@ namespace VendingMachine.MachineInterface
 
         public string GetDisplayMessage()
         {
+            if(_justVended)
+            {
+                _justVended = false;
+                return "THANK YOU";
+            }
             return "INSERT COIN";
         }
 
@@ -33,6 +40,12 @@ namespace VendingMachine.MachineInterface
                 _returnedCoins.Add(coin);
                 return false;
             }
+        }
+
+        public bool Vend(int selection)
+        {
+            _justVended = true;
+            return true;
         }
     }
 }
