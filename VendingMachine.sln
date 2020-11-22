@@ -7,6 +7,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{67EE5856
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VendingMachine.Tests", "tests\VendingMachine.Tests\VendingMachine.Tests.csproj", "{BD799F09-2A09-47E1-B195-725429164E99}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{5FCEEF33-D8E1-4201-9CE8-B686DA27589C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VendingMachine", "src\VendingMachine\VendingMachine.csproj", "{1613B01E-21E4-48B7-AAFE-9C8F2BC10DA6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -32,8 +36,21 @@ Global
 		{BD799F09-2A09-47E1-B195-725429164E99}.Release|x64.Build.0 = Release|Any CPU
 		{BD799F09-2A09-47E1-B195-725429164E99}.Release|x86.ActiveCfg = Release|Any CPU
 		{BD799F09-2A09-47E1-B195-725429164E99}.Release|x86.Build.0 = Release|Any CPU
+		{1613B01E-21E4-48B7-AAFE-9C8F2BC10DA6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1613B01E-21E4-48B7-AAFE-9C8F2BC10DA6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1613B01E-21E4-48B7-AAFE-9C8F2BC10DA6}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{1613B01E-21E4-48B7-AAFE-9C8F2BC10DA6}.Debug|x64.Build.0 = Debug|Any CPU
+		{1613B01E-21E4-48B7-AAFE-9C8F2BC10DA6}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{1613B01E-21E4-48B7-AAFE-9C8F2BC10DA6}.Debug|x86.Build.0 = Debug|Any CPU
+		{1613B01E-21E4-48B7-AAFE-9C8F2BC10DA6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1613B01E-21E4-48B7-AAFE-9C8F2BC10DA6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1613B01E-21E4-48B7-AAFE-9C8F2BC10DA6}.Release|x64.ActiveCfg = Release|Any CPU
+		{1613B01E-21E4-48B7-AAFE-9C8F2BC10DA6}.Release|x64.Build.0 = Release|Any CPU
+		{1613B01E-21E4-48B7-AAFE-9C8F2BC10DA6}.Release|x86.ActiveCfg = Release|Any CPU
+		{1613B01E-21E4-48B7-AAFE-9C8F2BC10DA6}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{BD799F09-2A09-47E1-B195-725429164E99} = {67EE5856-8600-47AE-BEFD-F998619809B3}
+		{1613B01E-21E4-48B7-AAFE-9C8F2BC10DA6} = {5FCEEF33-D8E1-4201-9CE8-B686DA27589C}
 	EndGlobalSection
 EndGlobal
