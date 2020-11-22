@@ -10,8 +10,8 @@ namespace VendingMachine.Tests.MachineInterface
         public void GivenThatThereAreTwoCoinsOfTheSameWeightAndDiameter_WhenICompareThem_ThenIGetTheExpectedResponse()
         {
             // Given
-            var subject1 = new Coin();
-            var subject2 = new Coin();
+            var subject1 = new Coin(5000, 835); // Nickel
+            var subject2 = new Coin(5000, 835); // Nickel
 
             // When
             // Then
