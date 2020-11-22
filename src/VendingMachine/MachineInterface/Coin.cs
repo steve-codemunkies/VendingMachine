@@ -13,7 +13,8 @@ namespace VendingMachine.MachineInterface
 
         public override bool Equals(object obj)
         {
-            return true;
+            return ((Coin)obj).DiameterMicrometre == DiameterMicrometre && 
+                ((Coin)obj).WeightMiligrams == WeightMiligrams;
         }
     }
 }
