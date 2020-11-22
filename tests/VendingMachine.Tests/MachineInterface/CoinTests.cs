@@ -31,5 +31,16 @@ namespace VendingMachine.Tests.MachineInterface
             subject1.Equals(subject2).Should().BeFalse();
             subject2.Equals(subject1).Should().BeFalse();
         }
+
+        [Fact]
+        public void GivenThatIHaveACoin_WhenICompareItToANonCoin_ThenIGetTheExpectedResponse()
+        {
+            // Given
+            var subject = new Coin(5000, 835); // Still a Nickel
+
+            // When
+            // Then
+            subject.Equals("this is not a coin");
+        }
     }
 }
