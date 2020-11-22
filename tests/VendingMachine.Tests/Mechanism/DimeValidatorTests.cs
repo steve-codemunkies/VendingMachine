@@ -20,4 +20,12 @@ namespace VendingMachine.Tests.Mechanism
             result.Should().BeTrue();
         }
     }
+
+    public class DimeValidator : IValidateCoin
+    {
+        public bool Validate(Coin coin)
+        {
+            return true;
+        }
+    }
 }
