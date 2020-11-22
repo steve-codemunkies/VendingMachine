@@ -18,5 +18,18 @@ namespace VendingMachine.Tests.MachineInterface
             subject1.Equals(subject2).Should().BeTrue();
             subject2.Equals(subject1).Should().BeTrue();
         }
+
+        [Fact]
+        public void GivenThatThereAreTwoCoinsOfTheSameWeightAndDifferentDiameters_WhenICompareThem_ThenIGetTheExpectedResponse()
+        {
+            // Given
+            var subject1 = new Coin(5000, 835); // Nickel
+            var subject2 = new Coin(5000, 836); // Not a Nickel
+
+            // When
+            // Then
+            subject1.Equals(subject2).Should().BeFalse();
+            subject2.Equals(subject1).Should().BeFalse();
+        }
     }
 }
