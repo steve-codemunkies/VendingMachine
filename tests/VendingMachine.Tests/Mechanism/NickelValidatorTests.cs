@@ -33,13 +33,4 @@ namespace VendingMachine.Tests.Mechanism
             result.Should().BeFalse();
         }
     }
-
-    public class NickelValidator : IValidateCoin
-    {
-        private static Coin MasterCoin = new Coin(5000, 21210);
-        public bool Validate(Coin coin)
-        {
-            return MasterCoin.Equals(coin);
-        }
-    }
 }
