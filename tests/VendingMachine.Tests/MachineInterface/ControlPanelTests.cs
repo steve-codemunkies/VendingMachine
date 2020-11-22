@@ -1,4 +1,9 @@
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
+using System.Runtime.Serialization;
 using FluentAssertions;
+using Moq;
 using Xunit;
 
 namespace VendingMachine.Tests.MachineInterface
@@ -9,7 +14,7 @@ namespace VendingMachine.Tests.MachineInterface
         public void GivenTheControlPanelHasBeenInitialised_WhenIGetTheDisplayMessage_ThenIGetTheExpectedDisplayMessage()
         {
             //Given
-            var subject = new ControlPanel();
+            var subject = new ControlPanel(null);
 
             //When
             var result = subject.GetDisplayMessage();
@@ -22,13 +27,18 @@ namespace VendingMachine.Tests.MachineInterface
         public void GivenACustomerInsertsACoin_WhenTheCoinIsValid_ThenTheCoinCollectorRetainsTheCoin()
         {
             // Given
-            var subject = new ControlPanel();
+            var coin = new Coin();
+            var coinCollectorMock = new Mock<ICollectCoins>();
+            var subject = new ControlPanel(coinCollectorMock.Object);
+
+            coinCollectorMock.Setup(cc => cc.Add(coin)).Returns(true);
 
             // When
-            var result = subject.InsertCoin(new Coin());
+            var result = subject.InsertCoin(coin);
 
             // Then
             result.Should().BeTrue();
+            subject.ReturnedCoins.Any().Should().BeFalse();
         }
 
         [Fact]
@@ -36,7 +46,10 @@ namespace VendingMachine.Tests.MachineInterface
         {
             // Given
             var coin = new Coin();
-            var subject = new ControlPanel();
+            var coinCollectorMock = new Mock<ICollectCoins>();
+            var subject = new ControlPanel(coinCollectorMock.Object);
+
+            coinCollectorMock.Setup(cc => cc.Add(coin)).Throws(new InvalidCoinException());
 
             // When
             var result = subject.InsertCoin(coin);
@@ -44,6 +57,26 @@ namespace VendingMachine.Tests.MachineInterface
             // Then
             result.Should().BeFalse();
             subject.ReturnedCoins.Contains(coin);
+        }
+    }
+
+    [System.Serializable]
+    public class InvalidCoinException : System.Exception
+    {
+        public InvalidCoinException()
+        {
+        }
+
+        public InvalidCoinException(string message) : base(message)
+        {
+        }
+
+        public InvalidCoinException(string message, System.Exception innerException) : base(message, innerException)
+        {
+        }
+
+        protected InvalidCoinException(SerializationInfo info, StreamingContext context) : base(info, context)
+        {
         }
     }
 
@@ -56,6 +89,16 @@ namespace VendingMachine.Tests.MachineInterface
 
     public class ControlPanel
     {
+        private readonly ICollectCoins _coinCollector;
+        private readonly List<Coin> _returnedCoins = new List<Coin>();
+
+        public ControlPanel(ICollectCoins coinCollector)
+        {
+            _coinCollector = coinCollector;
+        }
+
+        public IReadOnlyCollection<Coin> ReturnedCoins => new ReadOnlyCollection<Coin>(_returnedCoins);
+
         public string GetDisplayMessage()
         {
             return "INSERT COIN";
@@ -63,7 +106,20 @@ namespace VendingMachine.Tests.MachineInterface
 
         public bool InsertCoin(Coin coin)
         {
-            return true;
+            try
+            {
+                return _coinCollector.Add(coin);
+            }
+            catch(InvalidCoinException)
+            {
+                _returnedCoins.Add(coin);
+                return false;
+            }
         }
+    }
+
+    public interface ICollectCoins
+    {
+        bool Add(Coin coin);
     }
 }
