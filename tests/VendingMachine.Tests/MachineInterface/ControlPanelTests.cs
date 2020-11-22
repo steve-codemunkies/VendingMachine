@@ -30,6 +30,21 @@ namespace VendingMachine.Tests.MachineInterface
             // Then
             result.Should().BeTrue();
         }
+
+        [Fact]
+        public void GivenACustomerInsertsACoin_WhenTheCoinIsInvalid_ThenTheCoinCollectorReturnsTheCoin()
+        {
+            // Given
+            var coin = new Coin();
+            var subject = new ControlPanel();
+
+            // When
+            var result = subject.InsertCoin(coin);
+
+            // Then
+            result.Should().BeFalse();
+            subject.ReturnedCoins.Contains(coin);
+        }
     }
 
     public class Coin
