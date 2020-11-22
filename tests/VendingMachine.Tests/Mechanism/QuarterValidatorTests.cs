@@ -14,7 +14,7 @@ namespace VendingMachine.Tests.Mechanism
             IValidateCoin subject = new QuarterValidator();
 
             // When
-            var result = subject.Validate(new Coin(2268, 17910));
+            var result = subject.Validate(new Coin(5670, 24260));
 
             // Then
             result.Should().BeTrue();
@@ -36,9 +36,10 @@ namespace VendingMachine.Tests.Mechanism
 
     public class QuarterValidator : IValidateCoin
     {
+        private static Coin MasterCoin = new Coin(5670, 24260);
         public bool Validate(Coin coin)
         {
-            return true;
+            return MasterCoin.Equals(coin);
         }
     }
 }
