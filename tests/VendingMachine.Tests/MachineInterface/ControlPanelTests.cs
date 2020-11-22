@@ -58,5 +58,25 @@ namespace VendingMachine.Tests.MachineInterface
             result.Should().BeFalse();
             subject.ReturnedCoins.Contains(coin);
         }
+
+        [Fact]
+        public void GivenTheCustomerInsertsMoneyAndSelectsAProduct_WhenThereIsSufficientMoneyAndProduct_ThenTheProductIsVendedAndTheCoinCollectorEmptied()
+        {
+            // Given
+            var coin = new Coin(5670, 25260);
+            var coinCollectorMock = new Mock<ICollectCoins>();
+            var subject = new ControlPanel(coinCollectorMock.Object);
+
+            coinCollectorMock.Setup(cc => cc.Add(coin)).Returns(true);
+
+            // When
+            subject.InsertCoin(coin).Should().BeTrue();
+            var result = subject.Vend(1);
+
+            // Then
+            result.Should().BeTrue();
+            subject.GetDisplayMessage().Should().Be("THANK YOU");
+            subject.GetDisplayMessage().Should().Be("INSERT COIN");
+        }
     }
 }
