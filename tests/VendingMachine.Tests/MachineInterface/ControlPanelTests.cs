@@ -77,7 +77,28 @@ namespace VendingMachine.Tests.MachineInterface
             result.Should().BeTrue();
             subject.GetDisplayMessage().Should().Be("THANK YOU");
             subject.GetDisplayMessage().Should().Be("INSERT COIN");
-            coinCollectorMock.Verify(cc => cc.Checkout(75));
+            coinCollectorMock.Verify(cc => cc.Checkout(75), Times.Once);
         }
+
+
+        [Fact]
+        public void GivenTheCustomerHasInsertedNoMoneyAndSelectsAProduct_ThenThePriceAndPromptIsDisplayed()
+        {
+            // Given
+            var coinCollectorMock = new Mock<ICollectCoins>();
+            var subject = new ControlPanel(coinCollectorMock.Object);
+
+            // When
+            var result = subject.Vend(1);
+
+            // Then
+            result.Should().BeFalse();
+            subject.GetDisplayMessage().Should().Be("PRICE $0.75");
+            subject.GetDisplayMessage().Should().Be("INSERT COIN");
+            subject.GetDisplayMessage().Should().Be("PRICE $0.75");
+            subject.GetDisplayMessage().Should().Be("INSERT COIN");
+            coinCollectorMock.Verify(cc => cc.Checkout(It.IsAny<int>()), Times.Never);
+        }
+
     }
 }
