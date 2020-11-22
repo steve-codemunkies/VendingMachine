@@ -1,9 +1,9 @@
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
-using System.Runtime.Serialization;
 using FluentAssertions;
 using Moq;
+using VendingMachine.Exceptions;
+using VendingMachine.MachineInterface;
+using VendingMachine.Mechanism;
 using Xunit;
 
 namespace VendingMachine.Tests.MachineInterface
@@ -58,68 +58,5 @@ namespace VendingMachine.Tests.MachineInterface
             result.Should().BeFalse();
             subject.ReturnedCoins.Contains(coin);
         }
-    }
-
-    [System.Serializable]
-    public class InvalidCoinException : System.Exception
-    {
-        public InvalidCoinException()
-        {
-        }
-
-        public InvalidCoinException(string message) : base(message)
-        {
-        }
-
-        public InvalidCoinException(string message, System.Exception innerException) : base(message, innerException)
-        {
-        }
-
-        protected InvalidCoinException(SerializationInfo info, StreamingContext context) : base(info, context)
-        {
-        }
-    }
-
-    public class Coin
-    {
-        public Coin()
-        {
-        }
-    }
-
-    public class ControlPanel
-    {
-        private readonly ICollectCoins _coinCollector;
-        private readonly List<Coin> _returnedCoins = new List<Coin>();
-
-        public ControlPanel(ICollectCoins coinCollector)
-        {
-            _coinCollector = coinCollector;
-        }
-
-        public IReadOnlyCollection<Coin> ReturnedCoins => new ReadOnlyCollection<Coin>(_returnedCoins);
-
-        public string GetDisplayMessage()
-        {
-            return "INSERT COIN";
-        }
-
-        public bool InsertCoin(Coin coin)
-        {
-            try
-            {
-                return _coinCollector.Add(coin);
-            }
-            catch(InvalidCoinException)
-            {
-                _returnedCoins.Add(coin);
-                return false;
-            }
-        }
-    }
-
-    public interface ICollectCoins
-    {
-        bool Add(Coin coin);
     }
 }
