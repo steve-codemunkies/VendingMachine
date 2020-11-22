@@ -77,6 +77,7 @@ namespace VendingMachine.Tests.MachineInterface
             result.Should().BeTrue();
             subject.GetDisplayMessage().Should().Be("THANK YOU");
             subject.GetDisplayMessage().Should().Be("INSERT COIN");
+            coinCollectorMock.Verify(cc => cc.Checkout(75));
         }
     }
 }

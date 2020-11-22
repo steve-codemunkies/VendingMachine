@@ -45,6 +45,7 @@ namespace VendingMachine.MachineInterface
         public bool Vend(int selection)
         {
             _justVended = true;
+            _coinCollector.Checkout(75);
             return true;
         }
     }

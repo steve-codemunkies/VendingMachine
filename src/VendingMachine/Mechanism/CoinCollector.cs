@@ -24,5 +24,10 @@ namespace VendingMachine.Mechanism
 
             return true;
         }
+
+        public bool Checkout(int amount)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }
