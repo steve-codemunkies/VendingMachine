@@ -1,4 +1,5 @@
 using FluentAssertions;
+using VendingMachine.Exceptions;
 using VendingMachine.MachineInterface;
 using VendingMachine.Mechanism;
 using Xunit;
@@ -18,6 +19,17 @@ namespace VendingMachine.Tests.Mechanism
 
             // Then
             result.Should().BeTrue();
+        }
+
+        [Fact]
+        public void GivenThatTheCoinIAmAddingIsInvalid_ThenAnInvalidCoinExceptionIsThrown()
+        {
+            // Given
+            ICollectCoins subject = new CoinCollector();
+
+            // When
+            // Then
+            Assert.Throws<InvalidCoinException>(() => subject.Add(new Coin(2268, 705))); // Dime
         }
     }
 
