@@ -33,13 +33,4 @@ namespace VendingMachine.Tests.Mechanism
             result.Should().BeFalse();
         }
     }
-
-    public class DimeValidator : IValidateCoin
-    {
-        private static Coin MasterCoin = new Coin(2268, 17910);
-        public bool Validate(Coin coin)
-        {
-            return MasterCoin.Equals(coin);
-        }
-    }
 }
