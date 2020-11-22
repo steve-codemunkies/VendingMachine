@@ -32,11 +32,23 @@ namespace VendingMachine.Tests.MachineInterface
         }
     }
 
+    public class Coin
+    {
+        public Coin()
+        {
+        }
+    }
+
     public class ControlPanel
     {
         public string GetDisplayMessage()
         {
             return "INSERT COIN";
+        }
+
+        public bool InsertCoin(Coin coin)
+        {
+            return true;
         }
     }
 }
