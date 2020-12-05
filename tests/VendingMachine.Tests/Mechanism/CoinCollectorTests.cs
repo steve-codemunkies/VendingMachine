@@ -44,5 +44,16 @@ namespace VendingMachine.Tests.Mechanism
             // Then
             Assert.Throws<InvalidCoinException>(() => subject.Add(coin)); 
         }
+
+        [Fact]
+        public void GivenThatTheCoinCollectorIsEmpty_WhenITryToCheckoutANonZeroValue_ThenFalseIsReturned()
+        {
+            // Given
+            ICollectCoins subject = new CoinCollector(null);
+
+            // When
+            // Then
+            subject.Checkout(1).Should().BeFalse();
+        }
     }
 }
