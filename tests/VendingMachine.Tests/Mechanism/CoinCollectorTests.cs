@@ -55,5 +55,22 @@ namespace VendingMachine.Tests.Mechanism
             // Then
             subject.Checkout(1).Should().BeFalse();
         }
+
+        [Fact]
+        public void GivenThatACoinHasBeenAddedToTheCollector_WhenICheckoutAValueLessThanTheValueOfTheCoin_ThenTrueIsReturned()
+        {
+            // Given
+            var coin = new Coin(2268, 17910); // Dime
+            var validatorMock1 = new Mock<IValidateCoin>();
+            var validatorMock2 = new Mock<IValidateCoin>();
+            ICollectCoins subject = new CoinCollector(new [] { validatorMock1.Object });
+
+            validatorMock1.Setup(v => v.Validate(coin)).Returns(true);
+
+            // When
+            // Then
+            subject.Add(coin).Should().BeTrue();
+            subject.Checkout(50).Should().BeTrue();
+        }
     }
 }
