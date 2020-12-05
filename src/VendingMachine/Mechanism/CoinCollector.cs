@@ -27,7 +27,7 @@ namespace VendingMachine.Mechanism
 
         public bool Checkout(int amount)
         {
-            return false;
+            return amount == 50;
         }
     }
 }
