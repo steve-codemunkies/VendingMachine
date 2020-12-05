@@ -27,7 +27,7 @@ namespace VendingMachine.Mechanism
 
         public bool Checkout(int amount)
         {
-            throw new System.NotImplementedException();
+            return false;
         }
     }
 }
