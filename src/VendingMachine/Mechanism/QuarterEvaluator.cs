@@ -7,7 +7,7 @@ namespace VendingMachine.Mechanism
     {
         private static Coin MasterCoin = new Coin(5670, 24260);
 
-        public int CoinValue => throw new System.NotImplementedException();
+        public int CoinValue => 25;
 
         public bool Validate(Coin coin)
         {
