@@ -17,6 +17,17 @@ namespace VendingMachine.Tests.Product
             // Then
             subject.ProcessesSelection(123).Should().BeTrue();
         }
+
+        [Fact]
+        public void GivenThatTheProductManagerHasBeenSetupToManageASpecificProductCode_WhenSomethingChecksThatADifferentProductCodeCanBeProcessed_ThenTheGenericProductManagerReturnsFalse()
+        {
+            // Given
+            IProductContainer subject = new GenericProductManager();
+
+            // When
+            // Then
+            subject.ProcessesSelection(123).Should().BeFalse();
+        }
     }
 
     public class GenericProductManager : IProductContainer
