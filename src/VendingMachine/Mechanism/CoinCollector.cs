@@ -25,7 +25,13 @@ namespace VendingMachine.Mechanism
 
         public bool Checkout(int amount)
         {
-            return amount < accumulatedValue;
+            if(amount > accumulatedValue)
+            {
+                return false;
+            }
+
+            accumulatedValue = 0;
+            return true;
         }
     }
 }
