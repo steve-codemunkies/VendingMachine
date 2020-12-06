@@ -1,4 +1,5 @@
 using FluentAssertions;
+using Moq;
 using VendingMachine.Mechanism;
 using VendingMachine.Product;
 using Xunit;
@@ -29,6 +30,20 @@ namespace VendingMachine.Tests.Product
             // When
             // Then
             subject.ProcessesSelection(productCode + 5).Should().BeFalse();
+        }
+
+        [Fact]
+        public void GivenThatIHaveCollectedCoins_WhenTheValueOfTheCoinsAreGreaterThanOrEqualToTheValueOfTheProduct_AndThereIsProductAvailable_ThenTheGenericProductManagerRespondsThatItCanVend()
+        {
+            // Given
+            const int productCode = 123;
+            IProductContainer subject = new GenericProductManager(productCode);
+
+            var coinCollectorMock = new Mock<ICollectCoins>();
+
+            // When
+            // Then
+            subject.CanVend(coinCollectorMock.Object).Should().BeTrue();
         }
     }
 
