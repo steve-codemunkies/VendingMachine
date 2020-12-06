@@ -2,32 +2,30 @@ using System.Collections.Generic;
 using System.Linq;
 using VendingMachine.Exceptions;
 using VendingMachine.MachineInterface;
-using VendingMachine.Mechanism;
 
 namespace VendingMachine.Mechanism
 {
     public class CoinCollector : ICollectCoins
     {
-        private readonly IEnumerable<IEvaluateCoin> _validators;
+        private readonly IEnumerable<IEvaluateCoin> _evaluators;
+        private int accumulatedValue = 0;
 
-        public CoinCollector(IEnumerable<IEvaluateCoin> validators)
+        public CoinCollector(IEnumerable<IEvaluateCoin> evaluators)
         {
-            _validators = validators;
+            _evaluators = evaluators;
         }
 
         public bool Add(Coin coin)
         {
-            if(!_validators.Any(v => v.Validate(coin)))
-            {
-                throw new InvalidCoinException();
-            }
+            var evaluator = _evaluators.FirstOrDefault(e => e.Validate(coin));
+            accumulatedValue += (evaluator ?? throw new InvalidCoinException()).CoinValue;
 
             return true;
         }
 
         public bool Checkout(int amount)
         {
-            return amount == 50;
+            return amount < accumulatedValue;
         }
     }
 }
