@@ -51,7 +51,7 @@ namespace VendingMachine.MachineInterface
         {
             try
             {
-                return _coinCollector.Add(coin);
+                return _coinCollector.Insert(coin);
             }
             catch(InvalidCoinException)
             {

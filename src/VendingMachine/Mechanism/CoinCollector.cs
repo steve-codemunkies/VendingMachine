@@ -15,7 +15,7 @@ namespace VendingMachine.Mechanism
             _evaluators = evaluators;
         }
 
-        public bool Add(Coin coin)
+        public bool Insert(Coin coin)
         {
             var evaluator = _evaluators.FirstOrDefault(e => e.Validate(coin));
             accumulatedValue += (evaluator ?? throw new InvalidCoinException()).CoinValue;

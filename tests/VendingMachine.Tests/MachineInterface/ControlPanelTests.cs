@@ -32,7 +32,7 @@ namespace VendingMachine.Tests.MachineInterface
             var coinCollectorMock = new Mock<ICollectCoins>();
             var subject = new ControlPanel(coinCollectorMock.Object, null);
 
-            coinCollectorMock.Setup(cc => cc.Add(coin)).Returns(true);
+            coinCollectorMock.Setup(cc => cc.Insert(coin)).Returns(true);
 
             // When
             var result = subject.InsertCoin(coin);
@@ -50,7 +50,7 @@ namespace VendingMachine.Tests.MachineInterface
             var coinCollectorMock = new Mock<ICollectCoins>();
             var subject = new ControlPanel(coinCollectorMock.Object, null);
 
-            coinCollectorMock.Setup(cc => cc.Add(coin)).Throws(new InvalidCoinException());
+            coinCollectorMock.Setup(cc => cc.Insert(coin)).Throws(new InvalidCoinException());
 
             // When
             var result = subject.InsertCoin(coin);
@@ -73,7 +73,7 @@ namespace VendingMachine.Tests.MachineInterface
             var productContainerMock3 = new Mock<IProductContainer>();
             var subject = new ControlPanel(coinCollectorMock.Object, new [] { productContainerMock1.Object, productContainerMock2.Object, productContainerMock3.Object });
 
-            coinCollectorMock.Setup(cc => cc.Add(coin)).Returns(true);
+            coinCollectorMock.Setup(cc => cc.Insert(coin)).Returns(true);
             productContainerMock3.Setup(pm => pm.ProcessesSelection(selection)).Returns(true);
             productContainerMock3.Setup(pm => pm.CanVend(coinCollectorMock.Object)).Returns(true);
 

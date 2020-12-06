@@ -10,7 +10,7 @@ namespace VendingMachine.Tests.Mechanism
     public class CoinCollectorTests
     {
         [Fact]
-        public void GivenThatTheCoinIAmAddingIsValid_ThenItIsAccepted()
+        public void GivenThatTheCoinIAmInsertingIsValid_ThenItIsAccepted()
         {
             // Given
             var coin = new Coin(2268, 17910); // Dime
@@ -22,14 +22,14 @@ namespace VendingMachine.Tests.Mechanism
             validatorMock2.Setup(v => v.Validate(coin)).Returns(true);
 
             // When
-            var result = subject.Add(coin);
+            var result = subject.Insert(coin);
 
             // Then
             result.Should().BeTrue();
         }
 
         [Fact]
-        public void GivenThatTheCoinIAmAddingIsInvalid_ThenAnInvalidCoinExceptionIsThrown()
+        public void GivenThatTheCoinIAmInsertingIsInvalid_ThenAnInvalidCoinExceptionIsThrown()
         {
             // Given
             var coin = new Coin(2268, 17910); // Dime
@@ -42,7 +42,7 @@ namespace VendingMachine.Tests.Mechanism
 
             // When
             // Then
-            Assert.Throws<InvalidCoinException>(() => subject.Add(coin)); 
+            Assert.Throws<InvalidCoinException>(() => subject.Insert(coin)); 
         }
 
         [Fact]
@@ -57,7 +57,7 @@ namespace VendingMachine.Tests.Mechanism
         }
 
         [Fact]
-        public void GivenThatACoinHasBeenAddedToTheCollector_WhenICheckoutAValueLessThanTheValueOfTheCoin_ThenTrueIsReturned()
+        public void GivenThatACoinHasBeenInsertedIntoTheCollector_WhenICheckoutAValueLessThanTheValueOfTheCoin_ThenTrueIsReturned()
         {
             // Given
             const int checkoutValue = 50;
@@ -73,12 +73,12 @@ namespace VendingMachine.Tests.Mechanism
 
             // When
             // Then
-            subject.Add(coin).Should().BeTrue();
+            subject.Insert(coin).Should().BeTrue();
             subject.Checkout(checkoutValue).Should().BeTrue();
         }
 
         [Fact]
-        public void GivenThatACoinHasBeenAddedToTheCollector_WhenICheckoutAValueMoreThanTheValueOfTheCoin_ThenFalseIsReturned()
+        public void GivenThatACoinHasBeenInsertedIntoTheCollector_WhenICheckoutAValueMoreThanTheValueOfTheCoin_ThenFalseIsReturned()
         {
             // Given
             const int checkoutValue = 50;
@@ -95,12 +95,12 @@ namespace VendingMachine.Tests.Mechanism
 
             // When
             // Then
-            subject.Add(coin).Should().BeTrue();
+            subject.Insert(coin).Should().BeTrue();
             subject.Checkout(checkoutValue).Should().BeFalse();
         }
 
         [Fact]
-        public void GivenThatACoinHasBeenAddedToTheCollector_WhenICheckoutAValueThatIsTheSameAsTheValueOfTheCoin_ThenTrueIsReturned()
+        public void GivenThatACoinHasBeenInsertedIntoTheCollector_WhenICheckoutAValueThatIsTheSameAsTheValueOfTheCoin_ThenTrueIsReturned()
         {
             // Given
             const int checkoutValue = 50;
@@ -117,7 +117,7 @@ namespace VendingMachine.Tests.Mechanism
 
             // When
             // Then
-            subject.Add(coin).Should().BeTrue();
+            subject.Insert(coin).Should().BeTrue();
             subject.Checkout(checkoutValue).Should().BeTrue();
         }
 
@@ -139,7 +139,7 @@ namespace VendingMachine.Tests.Mechanism
 
             // When
             // Then - checkout one
-            subject.Add(coin).Should().BeTrue();
+            subject.Insert(coin).Should().BeTrue();
             subject.Checkout(checkoutValue).Should().BeTrue();
 
             // Then - checkout two
