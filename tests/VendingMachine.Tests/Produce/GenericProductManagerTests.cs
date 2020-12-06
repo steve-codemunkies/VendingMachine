@@ -58,7 +58,7 @@ namespace VendingMachine.Tests.Product
 
         public bool CanVend(ICollectCoins coinCollector)
         {
-            throw new System.NotImplementedException();
+            return true;
         }
 
         public string GetPriceString()
