@@ -8,9 +8,9 @@ namespace VendingMachine.Mechanism
 {
     public class CoinCollector : ICollectCoins
     {
-        private readonly IEnumerable<IValidateCoin> _validators;
+        private readonly IEnumerable<IEvaluateCoin> _validators;
 
-        public CoinCollector(IEnumerable<IValidateCoin> validators)
+        public CoinCollector(IEnumerable<IEvaluateCoin> validators)
         {
             _validators = validators;
         }

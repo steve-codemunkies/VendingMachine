@@ -5,13 +5,13 @@ using Xunit;
 
 namespace VendingMachine.Tests.Mechanism
 {
-    public class NickelValidatorTests
+    public class NickelEvaluatorTests
     {
         [Fact]
         public void GivenThatIAmValidatingANickel_ThenTheValidatorReturnsTrue()
         {
             // Given
-            IValidateCoin subject = new NickelValidator();
+            IEvaluateCoin subject = new NickelEvaluator();
 
             // When
             var result = subject.Validate(new Coin(5000, 21210));
@@ -24,7 +24,7 @@ namespace VendingMachine.Tests.Mechanism
         public void GivenThatIAmValidatingACoinThatIsNotANickel_ThenTheValidatorReturnsFalse()
         {
             // Given
-            IValidateCoin subject = new NickelValidator();
+            IEvaluateCoin subject = new NickelEvaluator();
 
             // When
             var result = subject.Validate(new Coin(11340, 30610));

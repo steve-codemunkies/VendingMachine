@@ -2,7 +2,7 @@ using VendingMachine.MachineInterface;
 
 namespace VendingMachine.Mechanism
 {
-    public interface IValidateCoin
+    public interface IEvaluateCoin
     {
         bool Validate(Coin coin);
     }

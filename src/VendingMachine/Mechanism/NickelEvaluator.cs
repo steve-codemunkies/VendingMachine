@@ -2,7 +2,7 @@ using VendingMachine.MachineInterface;
 
 namespace VendingMachine.Mechanism
 {
-    public class NickelValidator : IValidateCoin
+    public class NickelEvaluator : IEvaluateCoin
     {
         private static Coin MasterCoin = new Coin(5000, 21210);
         public bool Validate(Coin coin)

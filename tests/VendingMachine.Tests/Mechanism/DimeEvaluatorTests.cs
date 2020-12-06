@@ -5,13 +5,13 @@ using Xunit;
 
 namespace VendingMachine.Tests.Mechanism
 {
-    public class DimeValidatorTests
+    public class DimeEvaluatorTests
     {
         [Fact]
         public void GivenThatIAmValidatingADime_ThenTheValidatorReturnsTrue()
         {
             // Given
-            IValidateCoin subject = new DimeValidator();
+            IEvaluateCoin subject = new DimeEvaluator();
 
             // When
             var result = subject.Validate(new Coin(2268, 17910));
@@ -24,7 +24,7 @@ namespace VendingMachine.Tests.Mechanism
         public void GivenThatIAmNotValidatingADime_ThenTheValidatorReturnsFalse()
         {
             // Given
-            IValidateCoin subject = new DimeValidator();
+            IEvaluateCoin subject = new DimeEvaluator();
 
             // When
             var result = subject.Validate(new Coin(5670, 24260));

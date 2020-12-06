@@ -5,13 +5,13 @@ using Xunit;
 
 namespace VendingMachine.Tests.Mechanism
 {
-    public class QuarterValidatorTests
+    public class QuarterEvaluatorTests
     {
         [Fact]
         public void GivenThatIAmValidatingAQuarter_ThenTheValidatorReturnsTrue()
         {
             // Given
-            IValidateCoin subject = new QuarterValidator();
+            IEvaluateCoin subject = new QuarterEvaluator();
 
             // When
             var result = subject.Validate(new Coin(5670, 24260));
@@ -24,7 +24,7 @@ namespace VendingMachine.Tests.Mechanism
         public void GivenThatIAmNotValidatingAQuarter_ThenTheValidatorReturnsFalse()
         {
             // Given
-            IValidateCoin subject = new QuarterValidator();
+            IEvaluateCoin subject = new QuarterEvaluator();
 
             // When
             var result = subject.Validate(new Coin(5000, 21210));

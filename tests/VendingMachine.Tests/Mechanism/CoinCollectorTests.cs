@@ -14,8 +14,8 @@ namespace VendingMachine.Tests.Mechanism
         {
             // Given
             var coin = new Coin(2268, 17910); // Dime
-            var validatorMock1 = new Mock<IValidateCoin>();
-            var validatorMock2 = new Mock<IValidateCoin>();
+            var validatorMock1 = new Mock<IEvaluateCoin>();
+            var validatorMock2 = new Mock<IEvaluateCoin>();
             ICollectCoins subject = new CoinCollector(new [] { validatorMock1.Object, validatorMock2.Object });
 
             validatorMock1.Setup(v => v.Validate(coin)).Returns(false);
@@ -33,8 +33,8 @@ namespace VendingMachine.Tests.Mechanism
         {
             // Given
             var coin = new Coin(2268, 17910); // Dime
-            var validatorMock1 = new Mock<IValidateCoin>();
-            var validatorMock2 = new Mock<IValidateCoin>();
+            var validatorMock1 = new Mock<IEvaluateCoin>();
+            var validatorMock2 = new Mock<IEvaluateCoin>();
             ICollectCoins subject = new CoinCollector(new [] { validatorMock1.Object, validatorMock2.Object });
 
             validatorMock1.Setup(v => v.Validate(coin)).Returns(false);
@@ -61,8 +61,8 @@ namespace VendingMachine.Tests.Mechanism
         {
             // Given
             var coin = new Coin(2268, 17910); // Dime
-            var validatorMock1 = new Mock<IValidateCoin>();
-            var validatorMock2 = new Mock<IValidateCoin>();
+            var validatorMock1 = new Mock<IEvaluateCoin>();
+            var validatorMock2 = new Mock<IEvaluateCoin>();
             ICollectCoins subject = new CoinCollector(new [] { validatorMock1.Object });
 
             validatorMock1.Setup(v => v.Validate(coin)).Returns(true);
@@ -78,8 +78,8 @@ namespace VendingMachine.Tests.Mechanism
         {
             // Given
             var coin = new Coin(2268, 17910); // Dime
-            var validatorMock1 = new Mock<IValidateCoin>();
-            var validatorMock2 = new Mock<IValidateCoin>();
+            var validatorMock1 = new Mock<IEvaluateCoin>();
+            var validatorMock2 = new Mock<IEvaluateCoin>();
             ICollectCoins subject = new CoinCollector(new [] { validatorMock1.Object });
 
             validatorMock1.Setup(v => v.Validate(coin)).Returns(true);

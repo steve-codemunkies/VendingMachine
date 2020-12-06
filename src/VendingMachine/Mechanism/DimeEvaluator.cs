@@ -3,7 +3,7 @@ using VendingMachine.Mechanism;
 
 namespace VendingMachine.Mechanism
 {
-    public class DimeValidator : IValidateCoin
+    public class DimeEvaluator : IEvaluateCoin
     {
         private static Coin MasterCoin = new Coin(2268, 17910);
         public bool Validate(Coin coin)
