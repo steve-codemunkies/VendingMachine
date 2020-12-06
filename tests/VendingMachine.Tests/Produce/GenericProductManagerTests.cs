@@ -11,27 +11,36 @@ namespace VendingMachine.Tests.Product
         public void GivenThatTheProductManagerHasBeenSetupToManageASpecificProductCode_WhenSomethingChecksThatTheProductCodeCanBeProcessed_ThenTheGenericProductManagerReturnsTrue()
         {
             // Given
-            IProductContainer subject = new GenericProductManager();
+            const int productCode = 123;
+            IProductContainer subject = new GenericProductManager(productCode);
 
             // When
             // Then
-            subject.ProcessesSelection(123).Should().BeTrue();
+            subject.ProcessesSelection(productCode).Should().BeTrue();
         }
 
         [Fact]
         public void GivenThatTheProductManagerHasBeenSetupToManageASpecificProductCode_WhenSomethingChecksThatADifferentProductCodeCanBeProcessed_ThenTheGenericProductManagerReturnsFalse()
         {
             // Given
-            IProductContainer subject = new GenericProductManager();
+            const int productCode = 123;
+            IProductContainer subject = new GenericProductManager(productCode);
 
             // When
             // Then
-            subject.ProcessesSelection(123).Should().BeFalse();
+            subject.ProcessesSelection(productCode + 5).Should().BeFalse();
         }
     }
 
     public class GenericProductManager : IProductContainer
     {
+        private readonly int productCode;
+
+        public GenericProductManager(int productCode)
+        {
+            this.productCode = productCode;
+        }
+
         public bool CanVend(ICollectCoins coinCollector)
         {
             throw new System.NotImplementedException();
@@ -42,9 +51,6 @@ namespace VendingMachine.Tests.Product
             throw new System.NotImplementedException();
         }
 
-        public bool ProcessesSelection(int selection)
-        {
-            return true;
-        }
+        public bool ProcessesSelection(int selection) => selection == productCode;
     }
 }
