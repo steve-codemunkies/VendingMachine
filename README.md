@@ -18,3 +18,8 @@ To run the tests from the command line go to the root of the repository and run 
 
 In a real system these values would probably be represented using [`System.Decimal`](https://docs.microsoft.com/en-us/dotnet/api/system.decimal?redirectedfrom=MSDN&view=netcore-3.1). As noted in the [remarks](https://docs.microsoft.com/en-us/dotnet/api/system.decimal?redirectedfrom=MSDN&view=netcore-3.1#remarks) it is still necessary to correctly round the result of any caluculation, which also puts comparisons in doubt. To simplify the kata by reducing the number of randomly failing tests I have decided to represent these values as `int`.
 
+# Assumptions
+
+## Coins of a given weight and diameter can only have one value
+
+The only way for the vending machine to distinguish coins is via their weight and diameter. However it is possible for coins of multiple specification to represent the same value (e.g. the round pound coin and 12 sided coin were both in circulation and legal tender from early 2017 until October 2017).
