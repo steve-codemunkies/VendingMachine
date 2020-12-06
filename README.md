@@ -18,6 +18,10 @@ To run the tests from the command line go to the root of the repository and run 
 
 In a real system these values would probably be represented using [`System.Decimal`](https://docs.microsoft.com/en-us/dotnet/api/system.decimal?redirectedfrom=MSDN&view=netcore-3.1). As noted in the [remarks](https://docs.microsoft.com/en-us/dotnet/api/system.decimal?redirectedfrom=MSDN&view=netcore-3.1#remarks) it is still necessary to correctly round the result of any caluculation, which also puts comparisons in doubt. To simplify the kata by reducing the number of randomly failing tests I have decided to represent these values as `int`.
 
+## Vending machines use generic containers, and details of prices and quantities are configured
+
+When loading a vending machine the operator does not swap in a new chocolate bar, crisp or drink container, instead the existing container is reconfigured in the vending machine. On this basis a single configurable container will be used in this kata. 
+
 # Assumptions
 
 ## Coins of a given weight and diameter can only have one value

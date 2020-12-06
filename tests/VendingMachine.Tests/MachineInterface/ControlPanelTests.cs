@@ -68,14 +68,14 @@ namespace VendingMachine.Tests.MachineInterface
             var coin = new Coin(5670, 25260);
 
             var coinCollectorMock = new Mock<ICollectCoins>();
-            var productManagerMock1 = new Mock<IManageProduct>();
-            var productManagerMock2 = new Mock<IManageProduct>();
-            var productManagerMock3 = new Mock<IManageProduct>();
-            var subject = new ControlPanel(coinCollectorMock.Object, new [] { productManagerMock1.Object, productManagerMock2.Object, productManagerMock3.Object });
+            var productContainerMock1 = new Mock<IProductContainer>();
+            var productContainerMock2 = new Mock<IProductContainer>();
+            var productContainerMock3 = new Mock<IProductContainer>();
+            var subject = new ControlPanel(coinCollectorMock.Object, new [] { productContainerMock1.Object, productContainerMock2.Object, productContainerMock3.Object });
 
             coinCollectorMock.Setup(cc => cc.Add(coin)).Returns(true);
-            productManagerMock3.Setup(pm => pm.ProcessesSelection(selection)).Returns(true);
-            productManagerMock3.Setup(pm => pm.CanVend(coinCollectorMock.Object)).Returns(true);
+            productContainerMock3.Setup(pm => pm.ProcessesSelection(selection)).Returns(true);
+            productContainerMock3.Setup(pm => pm.CanVend(coinCollectorMock.Object)).Returns(true);
 
             // When
             subject.InsertCoin(coin).Should().BeTrue();
@@ -97,14 +97,14 @@ namespace VendingMachine.Tests.MachineInterface
             var priceString = "PRICE $0.75";
 
             var coinCollectorMock = new Mock<ICollectCoins>();
-            var productManagerMock1 = new Mock<IManageProduct>();
-            var productManagerMock2 = new Mock<IManageProduct>();
-            var productManagerMock3 = new Mock<IManageProduct>();
-            var subject = new ControlPanel(coinCollectorMock.Object, new [] { productManagerMock1.Object, productManagerMock2.Object, productManagerMock3.Object });
+            var productContainerMock1 = new Mock<IProductContainer>();
+            var productContainerMock2 = new Mock<IProductContainer>();
+            var productContainerMock3 = new Mock<IProductContainer>();
+            var subject = new ControlPanel(coinCollectorMock.Object, new [] { productContainerMock1.Object, productContainerMock2.Object, productContainerMock3.Object });
 
-            productManagerMock2.Setup(pm => pm.ProcessesSelection(selection)).Returns(true);
-            productManagerMock2.Setup(pm => pm.CanVend(coinCollectorMock.Object)).Returns(false);
-            productManagerMock2.Setup(pm => pm.GetPriceString()).Returns(priceString);
+            productContainerMock2.Setup(pm => pm.ProcessesSelection(selection)).Returns(true);
+            productContainerMock2.Setup(pm => pm.CanVend(coinCollectorMock.Object)).Returns(false);
+            productContainerMock2.Setup(pm => pm.GetPriceString()).Returns(priceString);
 
             // When
             var result = subject.Vend(selection);

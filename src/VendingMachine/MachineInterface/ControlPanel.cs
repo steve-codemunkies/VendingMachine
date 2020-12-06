@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -11,17 +10,17 @@ namespace VendingMachine.MachineInterface
     public class ControlPanel
     {
         private readonly ICollectCoins _coinCollector;
-        private readonly IEnumerable<IManageProduct> _productManagers;
+        private readonly IEnumerable<IProductContainer> _productContainers;
         private readonly List<Coin> _returnedCoins = new List<Coin>();
         private bool _justVended = false;
         private string _priceMessage;
         private bool _notEnough = false;
         private bool _notDisplayedPrice = false;
 
-        public ControlPanel(ICollectCoins coinCollector, IEnumerable<IManageProduct> productManagers)
+        public ControlPanel(ICollectCoins coinCollector, IEnumerable<IProductContainer> productContainers)
         {
             _coinCollector = coinCollector;
-            _productManagers = productManagers;
+            _productContainers = productContainers;
         }
 
         public IReadOnlyCollection<Coin> ReturnedCoins => new ReadOnlyCollection<Coin>(_returnedCoins);
@@ -63,7 +62,7 @@ namespace VendingMachine.MachineInterface
 
         public bool Vend(int selection)
         {
-            var pm = _productManagers.FirstOrDefault(p => p.ProcessesSelection(selection));
+            var pm = _productContainers.FirstOrDefault(p => p.ProcessesSelection(selection));
 
             if(pm == null)
             {
