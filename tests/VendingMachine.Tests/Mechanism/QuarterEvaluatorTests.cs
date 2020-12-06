@@ -32,5 +32,16 @@ namespace VendingMachine.Tests.Mechanism
             // Then
             result.Should().BeFalse();
         }
+
+        [Fact]
+        public void GivenThatIRequestTheValueFromTheEvaluator_ThenIAmReturnedTheValueAsAnInteger()
+        {
+            // Given
+            IEvaluateCoin subject = new QuarterEvaluator();
+
+            // When
+            // Then
+            subject.CoinValue.Should().Be(25);
+        }
     }
 }
