@@ -45,6 +45,20 @@ namespace VendingMachine.Tests.Product
             // Then
             subject.CanVend(coinCollectorMock.Object).Should().BeTrue();
         }
+
+        [Fact]
+        public void GivenThatIHaveCollectedCoins_WhenTheValueOfTheCoinsAreLessThanTheValueOfTheProduct_AndThereIsProductAvailable_ThenTheGenericProductManagerRespondsThatItCannotVend()
+        {
+            // Given
+            const int productCode = 123;
+            IProductContainer subject = new GenericProductManager(productCode);
+
+            var coinCollectorMock = new Mock<ICollectCoins>();
+
+            // When
+            // Then
+            subject.CanVend(coinCollectorMock.Object).Should().BeFalse();
+        }
     }
 
     public class GenericProductManager : IProductContainer
